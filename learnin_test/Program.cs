@@ -23,6 +23,7 @@ namespace learnin_test
     {
         static void Main(string[] args)
         {
+            // данный код описывает полиморфизм подтипов на примере жизненной ситуации
             Pacani[] kakateli = new Pacani[2];
             Pacani vitek = new Pacani();
             vitek.name = "Витек";
