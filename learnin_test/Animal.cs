@@ -13,7 +13,14 @@ namespace learnin_test
         {
             get
             {
-                return (_name.Substring(0, 1).ToUpper() + _name.Substring(1).ToLower());
+                if (string.IsNullOrEmpty(_name))
+                {
+                    return _name;
+                }
+                else
+                {
+                    return (_name[0].ToString().ToUpper() + _name.Substring(1).ToLower());
+                }
             }
             set
             {
@@ -60,7 +67,18 @@ namespace learnin_test
     }
     class Dog : Animal
     {
-        public string Breed;
+        private string _breed;
+        public string Breed 
+        { 
+            get 
+            {
+                return _breed; 
+            } 
+            set 
+            { 
+                _breed = value; 
+            } 
+        }
 
         public Dog(string name, string breed) : base(name, 15)
         {
@@ -68,7 +86,7 @@ namespace learnin_test
         }
         public override void Move()
         {
-            Console.WriteLine("{0} бегает!", Name);
+            Console.WriteLine("{0} бегает! Собаки породы {1} очень быстро бегают!", Name, Breed);
         }
 
     }
