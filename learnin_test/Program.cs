@@ -46,7 +46,7 @@ namespace learnin_test
             }
 
             Parrot popka = new Parrot("Попка", "желтый");
-            Dog tuzik = new Dog("кнОПкА", "риджбек");
+            Dog tuzik = new Dog("кНоПка", "риджбек");
             Console.WriteLine(popka);
             tuzik.Move();
 

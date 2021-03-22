@@ -19,7 +19,7 @@ namespace learnin_test
                 }
                 else
                 {
-                    return (_name[0].ToString().ToUpper() + _name.Substring(1).ToLower());
+                    return _name.Substring(0).ToUpper() + _name.Substring(1).ToLower();
                 }
             }
             set
