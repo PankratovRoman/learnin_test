@@ -70,7 +70,8 @@ namespace learnin_test
     {
         private string _breed;
         public float Age { get; set; }
-        protected string AgeName { 
+        private string AgeName 
+        { 
             get 
             {
                 var ageNameSelect = Age < 1.0 ? "puppi" : "adult";
