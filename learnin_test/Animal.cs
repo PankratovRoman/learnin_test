@@ -13,13 +13,14 @@ namespace learnin_test
         {
             get
             {
+                
                 if (string.IsNullOrEmpty(_name))
                 {
                     return _name;
                 }
                 else
                 {
-                    return _name.Substring(0).ToUpper() + _name.Substring(1).ToLower();
+                    return _name.Substring(0, 1).ToUpper() + _name.Substring(1).ToLower();
                 }
             }
             set
@@ -68,6 +69,14 @@ namespace learnin_test
     class Dog : Animal
     {
         private string _breed;
+        public float Age { get; set; }
+        protected string AgeName { 
+            get 
+            {
+                var ageNameSelect = Age < 1.0 ? "puppi" : "adult";
+                return ageNameSelect;
+            } 
+        }
         public string Breed 
         { 
             get 
@@ -80,13 +89,15 @@ namespace learnin_test
             } 
         }
 
-        public Dog(string name, string breed) : base(name, 15)
+        public Dog(string name, string breed, float age) : base(name, 15)
         {
             Breed = breed;
+            Age = age;
+            
         }
         public override void Move()
         {
-            Console.WriteLine("{0} бегает! Собаки породы {1} очень быстро бегают!", Name, Breed);
+            Console.WriteLine("{0} бегает! Собаки породы {1} очень быстро бегают! Ведь мне уже {2} лет и я {3}", Name, Breed, Age, AgeName);
         }
 
     }
