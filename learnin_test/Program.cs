@@ -2,7 +2,7 @@
 
 namespace learnin_test
 {
-   
+
     class Program
     {
         static void Main(string[] args)
@@ -21,8 +21,10 @@ namespace learnin_test
             //Console.WriteLine(popka);
             //tuzik.Move();
 
-
-
+            HeatingSystem boiler = new HeatingSystem("котел", "baxi", 33000f, "газ");
+            boiler.StartSystem();
+            WaterSupplySystem bathBlender = new WaterSupplySystem("смеситель", "grohe", 7500f, "горячая и холодная", "ванная комната");
+            bathBlender.StartSystem();
 
         }
     }
