@@ -102,6 +102,24 @@ namespace learnin_test
         }
 
     }
+
+    sealed class UnicornPig : Animal // запечатанный класс. От него нельзя наследовать.
+    {
+        public static UnicornPig Zhenek => new UnicornPig("zhenek"); // паттерн синглтон
+        public static UnicornPig Kapkanec => new UnicornPig("sanek");
+        private UnicornPig(string name) : base(name, 99) 
+        { 
+        }
+
+        public override void Move()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    
+
+
 }
 
 // задание:

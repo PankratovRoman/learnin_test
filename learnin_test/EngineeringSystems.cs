@@ -12,33 +12,60 @@ namespace learnin_test
         public string Name { get; set; }
         public string Brand { get; set; }
         public float Price { get; set; }
+        public virtual string Pisun { get; set; } //убери писюн
 
-        protected EngineeringSystems()
-        {
-        }
-
-        protected EngineeringSystems(string name, string brand, float price)
+        protected EngineeringSystems(string name, string brand, float price, string pisun = "")
         {
             Name = name;
             Brand = brand;
             Price = price;
+            Pisun = pisun;
         }
 
         public abstract void StartSystem();
-
-
     }
 
+    enum HeatingResourceType
+    {
+        Gas = 66,
+        Electricity = 77
+    }
     class HeatingSystem : EngineeringSystems
     {
-        public string ResourceType { get; set; }
-
-        public HeatingSystem(string resourceType = null) : base()
+        //public new string Name => "pisun"; // стараться такое не использовать
+        private string _heatingPisun;
+        public override string Pisun
         {
-            ResourceType = resourceType;
+            get
+            {
+                return base.Pisun + " " + _heatingPisun;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(base.Pisun))
+                {
+                    base.Pisun = value;
+                    return;
+                }
+                _heatingPisun = value;
+            }
+        }
+        //
+        public HeatingResourceType ResourceType { get; set; }
+        public string ResourceTypeText
+        {
+            get
+            {
+                switch (ResourceType)
+                {
+                    case HeatingResourceType.Gas: return "газ";
+                    case HeatingResourceType.Electricity: return "электричество";
+                    default: return "other";
+                }
+            }
         }
 
-        public HeatingSystem(string name, string brand, float price, string resourceType) : base(name, brand, price)
+        public HeatingSystem(string name, string brand, float price, HeatingResourceType resourceType) : base(name, brand, price, "bolshoy pisunyara!")
         {
             ResourceType = resourceType;
         }
@@ -51,8 +78,8 @@ namespace learnin_test
             }
             else
             {
-                Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name.Substring(1).ToLower()} фирмы {Brand} запущен." +
-                    $" Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceType} вода.");
+                Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name[1..].ToLower()} фирмы {Brand} запущен." +
+                    $" Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceTypeText} {(int)ResourceType}.");
             }
 
         }
@@ -66,6 +93,9 @@ namespace learnin_test
             get
             {
                 //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
+
+                //задание: сделать 2 переменных bool
+
                 switch (_hotAndCold)
                 {
                     case "горячая и холодная":
@@ -100,7 +130,7 @@ namespace learnin_test
 
     class ElectricitySupplySystem : EngineeringSystems
     {
-        private string _rougeOrFinishing;
+        private string _rougeOrFinishing; // поменять rouge. 
         public string RougeOrFinishing
         {
             get
@@ -126,12 +156,13 @@ namespace learnin_test
 
         public override void StartSystem()
         {
-            Console.WriteLine($"Установлен {Name} фирмы {Brand}. Стоимость модуля {Price} рублей. Используется для {RougeOrFinishing} электромонтажа.");
+            Console.WriteLine($"Установлен {Name} фирмы {Brand}. Стоимость модуля {Price} рублей." +
+                $" Используется для {RougeOrFinishing} электромонтажа.");
         }
     }
 
 
-    //class SewerageSystem : EngineeringSystems
+    //class SewageSystem : EngineeringSystems
     //{
     //    public int PipeDiameter { get; set; }
     //    public override void StartSystem()
