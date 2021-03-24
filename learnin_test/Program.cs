@@ -24,8 +24,15 @@ namespace learnin_test
             HeatingSystem boiler = new HeatingSystem("котел", "baxi", 33000f, "газ");
             boiler.StartSystem();
             WaterSupplySystem bathBlender = new WaterSupplySystem("смеситель", "grohe", 7500f, "горячая и холодная", "ванная комната");
+            WaterSupplySystem citchenBlender = new WaterSupplySystem("смеситель", "grohe", 5300f, "горячая", "кухня");
             bathBlender.StartSystem();
+            citchenBlender.StartSystem();
 
+            HeatingSystem collector = new HeatingSystem();
+            collector.StartSystem();
+            ElectricitySupplySystem electricPanel = new ElectricitySupplySystem("электрощит", "schneider", 50000f, "черновая");
+            electricPanel.StartSystem();
         }
+
     }
 }

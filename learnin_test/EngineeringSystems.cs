@@ -6,7 +6,6 @@ namespace learnin_test
 {
     // имеем дом. В доме есть инженерные системы: отопление, водоснабжение, электроснабжение
     // каждая система имеет экземпляры оборудования
-    // 
 
     abstract class EngineeringSystems
     {
@@ -14,21 +13,42 @@ namespace learnin_test
         public string Brand { get; set; }
         public float Price { get; set; }
 
+        protected EngineeringSystems()
+        {
+        }
+
         protected EngineeringSystems(string name, string brand, float price)
         {
             Name = name;
             Brand = brand;
             Price = price;
-
         }
 
         public abstract void StartSystem();
+        //public virtual void CreateSystemPart() {
+        //    HeatingSystem newClass = new HeatingSystem(Name, Brand, Price);
+        //    Console.WriteLine("Введите оборудование, которое хотите создать: ");
+        //    Name = Console.ReadLine();
+        //    Console.WriteLine("Какого производителя вы предпочитаете?: ");
+        //    Brand = Console.ReadLine();
+        //    Console.WriteLine("Смотрели сколько стоит? Скажите: ");
+        //    Price = float.Parse(Console.ReadLine());
+        //    //Console.WriteLine("Какой водой будете пользоваться?: ");
+        //    //ResourceType = Console.ReadLine();
+        //    newClass.StartSystem();
+
+        //};
 
     }
 
     class HeatingSystem : EngineeringSystems
     {
         public string ResourceType { get; set; }
+
+        public HeatingSystem(string resourceType = null) : base()
+        {
+            ResourceType = resourceType;
+        }
 
         public HeatingSystem(string name, string brand, float price, string resourceType) : base(name, brand, price)
         {
@@ -37,30 +57,42 @@ namespace learnin_test
 
         public override void StartSystem()
         {
-            Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name.Substring(1).ToLower()} фирмы {Brand} запущен. Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceType}.");
-        }
+            if (Name is null)
+            {
+                Console.WriteLine("Создайте элемент корректно");
+            }
+            else
+            {
+                Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name.Substring(1).ToLower()} фирмы {Brand} запущен. Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceType}.");
+            }
 
+        }
     }
 
     class WaterSupplySystem : EngineeringSystems
     {
+        private string _hotAndCold;
         public string HotAndCold
         {
             get
             {
-                if (HotAndCold == "горячая и холодная")
+                //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
+                switch (_hotAndCold)
                 {
-                    HotAndCold = "горячей и холодной";
-                    return HotAndCold; 
+                    case "горячая и холодная":
+                        return "горячей и холодной";
+                    case "горячая":
+                        return "горячей";
+                    case "холодная":
+                        return "холодной";
+                    default:
+                        return _hotAndCold;
                 }
-                else
-                {
-                    return HotAndCold;
-                }
+
             }
             set
             {
-                
+                _hotAndCold = value;
             }
         }
         public string IntendedUse { get; set; }
@@ -76,15 +108,37 @@ namespace learnin_test
 
     }
 
-    //class ElectricitySupplySystem : EngineeringSystems
-    //{
-    //    public string RougeOrFinishing { get; set; }
+    class ElectricitySupplySystem : EngineeringSystems
+    {
+        private string _rougeOrFinishing;
+        public string RougeOrFinishing
+        {
+            get
+            {
+                return _rougeOrFinishing switch //аналог свича, определенного в свойстве вышел. Предложила студия.
+                {
+                    "черновая" => "чернового",
+                    "чистовая" => "чистового",
+                    _ => _rougeOrFinishing,
+                };
+            }
+            set
+            {
+                _rougeOrFinishing = value;
 
-    //    public override void StartSystem()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-    //}
+            }
+        }
+        public ElectricitySupplySystem(string name, string brand, float price, string rougeOrFinishing) : base(name, brand, price)
+        {
+            RougeOrFinishing = rougeOrFinishing;
+        }
+
+
+        public override void StartSystem()
+        {
+            Console.WriteLine($"Установлен {Name} фирмы {Brand}. Стоимость модуля {Price} рублей. Используется для {RougeOrFinishing} электромонтажа.");
+        }
+    }
 
 
     //class SewerageSystem : EngineeringSystems
