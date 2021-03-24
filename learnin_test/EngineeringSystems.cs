@@ -25,19 +25,7 @@ namespace learnin_test
         }
 
         public abstract void StartSystem();
-        //public virtual void CreateSystemPart() {
-        //    HeatingSystem newClass = new HeatingSystem(Name, Brand, Price);
-        //    Console.WriteLine("Введите оборудование, которое хотите создать: ");
-        //    Name = Console.ReadLine();
-        //    Console.WriteLine("Какого производителя вы предпочитаете?: ");
-        //    Brand = Console.ReadLine();
-        //    Console.WriteLine("Смотрели сколько стоит? Скажите: ");
-        //    Price = float.Parse(Console.ReadLine());
-        //    //Console.WriteLine("Какой водой будете пользоваться?: ");
-        //    //ResourceType = Console.ReadLine();
-        //    newClass.StartSystem();
 
-        //};
 
     }
 
@@ -63,7 +51,8 @@ namespace learnin_test
             }
             else
             {
-                Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name.Substring(1).ToLower()} фирмы {Brand} запущен. Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceType}.");
+                Console.WriteLine($"{Name.Substring(0, 1).ToUpper() + Name.Substring(1).ToLower()} фирмы {Brand} запущен." +
+                    $" Данное оборудовани стоило {Price} рублей. Для работы требуется {ResourceType} вода.");
             }
 
         }
@@ -103,7 +92,8 @@ namespace learnin_test
         }
         public override void StartSystem()
         {
-            Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}. Предназначен для использования с {HotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
+            Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}." +
+                $" Предназначен для использования с {HotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
         }
 
     }

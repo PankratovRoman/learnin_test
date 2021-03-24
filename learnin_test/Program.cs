@@ -27,11 +27,23 @@ namespace learnin_test
             WaterSupplySystem citchenBlender = new WaterSupplySystem("смеситель", "grohe", 5300f, "горячая", "кухня");
             bathBlender.StartSystem();
             citchenBlender.StartSystem();
+            ElectricitySupplySystem electricPanel = new ElectricitySupplySystem("электрощит", "schneider", 50000f, "черновая");
+            electricPanel.StartSystem();
 
             HeatingSystem collector = new HeatingSystem();
             collector.StartSystem();
-            ElectricitySupplySystem electricPanel = new ElectricitySupplySystem("электрощит", "schneider", 50000f, "черновая");
-            electricPanel.StartSystem();
+            Console.WriteLine("Введите оборудование, которое хотите создать: ");
+            collector.Name = Console.ReadLine();
+            Console.WriteLine("Какого производителя вы предпочитаете?: ");
+            collector.Brand = Console.ReadLine();
+            Console.WriteLine("Смотрели сколько стоит? Скажите: ");
+            collector.Price = float.Parse(Console.ReadLine()); // хуйня
+            Console.WriteLine("Какой водой будете пользоваться?: ");
+            collector.ResourceType = Console.ReadLine();
+            collector.StartSystem();
+            
+
+
         }
 
     }
