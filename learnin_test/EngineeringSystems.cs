@@ -12,14 +12,14 @@ namespace learnin_test
         public string Name { get; set; }
         public string Brand { get; set; }
         public float Price { get; set; }
-        public virtual string Pisun { get; set; } //убери писюн
+        // public virtual string Pisun { get; set; } //убери писюн
 
-        protected EngineeringSystems(string name, string brand, float price, string pisun = "")
+        protected EngineeringSystems(string name, string brand, float price) //, string pisun = "")
         {
             Name = name;
             Brand = brand;
             Price = price;
-            Pisun = pisun;
+           // Pisun = pisun;
         }
 
         public abstract void StartSystem();
@@ -32,25 +32,25 @@ namespace learnin_test
     }
     class HeatingSystem : EngineeringSystems
     {
-        //public new string Name => "pisun"; // стараться такое не использовать
-        private string _heatingPisun;
-        public override string Pisun
-        {
-            get
-            {
-                return base.Pisun + " " + _heatingPisun;
-            }
-            set
-            {
-                if (string.IsNullOrEmpty(base.Pisun))
-                {
-                    base.Pisun = value;
-                    return;
-                }
-                _heatingPisun = value;
-            }
-        }
-        //
+        ////public new string Name => "pisun"; // стараться такое не использовать
+        //private string _heatingPisun;
+        //public override string Pisun
+        //{
+        //    get
+        //    {
+        //        return base.Pisun + " " + _heatingPisun;
+        //    }
+        //    set
+        //    {
+        //        //if (string.IsNullOrEmpty(base.Pisun))
+        //        //{
+        //        //    base.Pisun = value;
+        //        //    return;
+        //        //}
+        //        _heatingPisun = value;
+        //    }
+        //}
+        ////
         public HeatingResourceType ResourceType { get; set; }
         public string ResourceTypeText
         {
@@ -65,7 +65,7 @@ namespace learnin_test
             }
         }
 
-        public HeatingSystem(string name, string brand, float price, HeatingResourceType resourceType) : base(name, brand, price, "bolshoy pisunyara!")
+        public HeatingSystem(string name, string brand, float price, HeatingResourceType resourceType) : base(name, brand, price) //, "bolshoy pisunyara!")
         {
             ResourceType = resourceType;
         }
@@ -87,43 +87,29 @@ namespace learnin_test
 
     class WaterSupplySystem : EngineeringSystems
     {
-        private string _hotAndCold;
-        public string HotAndCold
-        {
-            get
-            {
-                //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
+        private string _useHot = "горячей", _useCold = "холлодной";
 
-                //задание: сделать 2 переменных bool
-
-                switch (_hotAndCold)
-                {
-                    case "горячая и холодная":
-                        return "горячей и холодной";
-                    case "горячая":
-                        return "горячей";
-                    case "холодная":
-                        return "холодной";
-                    default:
-                        return _hotAndCold;
-                }
-
-            }
-            set
-            {
-                _hotAndCold = value;
-            }
-        }
+        public bool UseHot { get; set; }
+        public bool UseCold { get; set; }
         public string IntendedUse { get; set; }
-        public WaterSupplySystem(string name, string brand, float price, string hotAndCold, string intendedUse) : base(name, brand, price)
+
+        
+        //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
+
+        //задание: сделать 2 переменных bool
+
+
+        public WaterSupplySystem(string name, string brand, float price, bool useHot, bool useCold, string intendedUse) : base(name, brand, price)
         {
-            HotAndCold = hotAndCold;
             IntendedUse = intendedUse;
+            UseHot = useHot;
+            UseCold = useCold;
+            
         }
         public override void StartSystem()
         {
             Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}." +
-                $" Предназначен для использования с {HotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
+                $" Предназначен для использования с  водой. Стоимость оборудования составила {Price} рублей.");
         }
 
     }
