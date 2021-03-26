@@ -87,21 +87,10 @@ namespace learnin_test
 
     class WaterSupplySystem : EngineeringSystems
     {
-
         public bool UseHot { get; set; }
         public bool UseCold { get; set; }
-
-        private string useHotAndCold
-        {
-            get
-            {
-                if (UseHot) { return "горячей"; }
-                if (UseCold) { return "холодной"; }
-                if (UseHot && UseCold) { return "горячей и холодной"; }
-                else return "";
-
-            }
-        }
+        private string UseHotAndCold => $"{(UseHot ? "горячей" : "")}{(UseHot && UseCold ? " и " : "")}{(UseCold ? "холодной" : "")}";
+        // равноценно
         //private string _useHotString => UseHot ? "горячей" : "";
         //private string _useColdString => UseCold ? "холодной" : "";
         //private string _useHotAndCold => UseHot && UseCold ? "и" : "";
@@ -109,7 +98,6 @@ namespace learnin_test
 
         //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
 
-        //задание: сделать 2 переменных bool
 
 
         public WaterSupplySystem(string name, string brand, float price, bool useHot, bool useCold, string intendedUse) : base(name, brand, price)
@@ -122,7 +110,7 @@ namespace learnin_test
         public override void StartSystem()
         {
             Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}." +
-                $" Предназначен для использования с {useHotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
+                $" Предназначен для использования с {UseHotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
         }
 
     }
