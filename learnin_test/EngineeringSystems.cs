@@ -91,9 +91,20 @@ namespace learnin_test
         public bool UseHot { get; set; }
         public bool UseCold { get; set; }
 
-        private string _useHotString => UseHot ? "горячей" : "";
-        private string _useColdString => UseCold ? "холодной" : "";
-        private string _useHotAndCold => UseHot && UseCold ? "и" : "";
+        private string useHotAndCold
+        {
+            get
+            {
+                if (UseHot) { return "горячей"; }
+                if (UseCold) { return "холодной"; }
+                if (UseHot && UseCold) { return "горячей и холодной"; }
+                else return "";
+
+            }
+        }
+        //private string _useHotString => UseHot ? "горячей" : "";
+        //private string _useColdString => UseCold ? "холодной" : "";
+        //private string _useHotAndCold => UseHot && UseCold ? "и" : "";
         public string IntendedUse { get; set; }
 
         //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
@@ -111,7 +122,7 @@ namespace learnin_test
         public override void StartSystem()
         {
             Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}." +
-                $" Предназначен для использования с {_useHotString} {_useHotAndCold} {_useColdString} водой. Стоимость оборудования составила {Price} рублей.");
+                $" Предназначен для использования с {useHotAndCold} водой. Стоимость оборудования составила {Price} рублей.");
         }
 
     }
