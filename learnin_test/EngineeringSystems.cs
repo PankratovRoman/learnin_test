@@ -19,7 +19,7 @@ namespace learnin_test
             Name = name;
             Brand = brand;
             Price = price;
-           // Pisun = pisun;
+            // Pisun = pisun;
         }
 
         public abstract void StartSystem();
@@ -56,12 +56,12 @@ namespace learnin_test
         {
             get
             {
-                switch (ResourceType)
+                return ResourceType switch
                 {
-                    case HeatingResourceType.Gas: return "газ";
-                    case HeatingResourceType.Electricity: return "электричество";
-                    default: return "other";
-                }
+                    HeatingResourceType.Gas => "газ",
+                    HeatingResourceType.Electricity => "электричество",
+                    _ => "other",
+                };
             }
         }
 
@@ -87,13 +87,15 @@ namespace learnin_test
 
     class WaterSupplySystem : EngineeringSystems
     {
-        private string _useHot = "горячей", _useCold = "холлодной";
 
         public bool UseHot { get; set; }
         public bool UseCold { get; set; }
+
+        private string _useHotString => UseHot ? "горячей" : "";
+        private string _useColdString => UseCold ? "холодной" : "";
+        private string _useHotAndCold => UseHot && UseCold ? "и" : "";
         public string IntendedUse { get; set; }
 
-        
         //return _hotAndCold == "горячая и холодная" ? "горячей и холодной" : _hotAndCold;
 
         //задание: сделать 2 переменных bool
@@ -104,12 +106,12 @@ namespace learnin_test
             IntendedUse = intendedUse;
             UseHot = useHot;
             UseCold = useCold;
-            
+
         }
         public override void StartSystem()
         {
             Console.WriteLine($"Установлен и протестирован {Name} фирмы {Brand}. Место установки: {IntendedUse}." +
-                $" Предназначен для использования с  водой. Стоимость оборудования составила {Price} рублей.");
+                $" Предназначен для использования с {_useHotString} {_useHotAndCold} {_useColdString} водой. Стоимость оборудования составила {Price} рублей.");
         }
 
     }

@@ -27,7 +27,10 @@ namespace learnin_test
             //boiler.StartSystem();
             //boiler.Pisun = "Zheka";
             //Console.WriteLine(boiler.Pisun);
-            
+
+
+            WaterSupplySystem shower = new WaterSupplySystem("душ", "grohe", 50000f, true, true, "ванная комната");
+            shower.StartSystem();
             //WaterSupplySystem bathBlender = new WaterSupplySystem("смеситель", "grohe", 7500f, "горячая и холодная", "ванная комната");
             //WaterSupplySystem citchenBlender = new WaterSupplySystem("смеситель", "grohe", 5300f, "горячая", "кухня");
             //bathBlender.StartSystem();
