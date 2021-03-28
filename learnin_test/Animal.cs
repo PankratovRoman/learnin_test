@@ -10,7 +10,6 @@ namespace learnin_test
 
         void Cure(float hp);
         float Scan();
-
         bool IsDead { get; }
     }
 

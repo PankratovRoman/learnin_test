@@ -17,10 +17,10 @@ namespace learnin_test
             //}
 
             //Parrot popka = new Parrot("Попка", "желтый");
-            Dog tuzik = new Dog("кНоПка", "риджбек", 1.5f);
-            //Console.WriteLine(popka);
-            Doctor docJohnKoten = new Doctor();
-            docJohnKoten.Examine(tuzik);
+            //Dog tuzik = new Dog("кНоПка", "риджбек", 1.5f);
+            ////Console.WriteLine(popka);
+            //Doctor docJohnKoten = new Doctor();
+            //docJohnKoten.Examine(tuzik);
             //tuzik.Hit(8);
             //docJohnKoten.Examine(tuzik);
             //tuzik.Hit(20);
@@ -59,6 +59,17 @@ namespace learnin_test
             //HeatingSystem collector = new HeatingSystem(name, brand, price, resourceType);
             //collector.StartSystem();
 
+            var bender = new Robot();
+            var iron = new Iron();
+
+            bender.Parameter.Damage(50);
+            Console.WriteLine(bender);
+            RepairMan.Repair(bender);
+            RepairMan.Repair(bender);
+
+            iron.Parameter.Damage(50);
+            Console.WriteLine(iron);
+            RepairMan.Repair(iron);
         }
 
     }
