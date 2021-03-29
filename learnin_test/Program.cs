@@ -30,11 +30,11 @@ namespace learnin_test
 
             //Console.WriteLine(UnicornPig.Zhenek.Name + " + " + UnicornPig.Kapkanec.Name + " = два гомо-синглтона");
 
+            // наследование, this, base
             //HeatingSystem boiler = new HeatingSystem("котел", "baxi", 33000f, HeatingResourceType.Gas);
             //boiler.StartSystem();
             //boiler.Pisun = "Zheka";
             //Console.WriteLine(boiler.Pisun);
-
 
             //WaterSupplySystem shower = new WaterSupplySystem("душ", "grohe", 50000f, true, true, "ванная комната");
             //shower.StartSystem();
@@ -44,8 +44,6 @@ namespace learnin_test
             //citchenBlender.StartSystem();
             //ElectricitySupplySystem electricPanel = new ElectricitySupplySystem("электрощит", "schneider", 50000f, "черновая");
             //electricPanel.StartSystem();
-
-
 
             //Console.WriteLine("Введите оборудование, которое хотите создать: ");
             //var name = Console.ReadLine();
@@ -59,17 +57,23 @@ namespace learnin_test
             //HeatingSystem collector = new HeatingSystem(name, brand, price, resourceType);
             //collector.StartSystem();
 
-            var bender = new Robot();
-            var iron = new Iron();
+            // дженерики. Класс Robot
+            //var bender = new Robot();
+            //var iron = new Iron();
 
-            bender.Parameter.Damage(50);
-            Console.WriteLine(bender);
-            RepairMan.Repair(bender);
-            RepairMan.Repair(bender);
+            //bender.Parameter.Damage(50);
+            //Console.WriteLine(bender);
+            //RepairMan.Repair(bender);
+            //RepairMan.Repair(bender);
 
-            iron.Parameter.Damage(50);
-            Console.WriteLine(iron);
-            RepairMan.Repair(iron);
+            //iron.Parameter.Damage(50);
+            //Console.WriteLine(iron);
+            //RepairMan.Repair(iron);
+
+            Roman roman = new Roman("Roman", "", true);
+            Console.WriteLine(roman);
+
+        
         }
 
     }
