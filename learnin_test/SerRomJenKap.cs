@@ -4,14 +4,10 @@ using System.Text;
 
 namespace learnin_test
 {
-    interface IProgrammingTeaching 
+    interface ITeach
     {
-        void Teach();
-    }
+        bool ICanNow { get; }
 
-    interface IProgrammingLearning 
-    {
-        void Learn();
     }
 
     abstract class SerRomJenKap
@@ -25,63 +21,58 @@ namespace learnin_test
         {
             Name = name;
         }
-
-        public SerRomJenKap(string name, string profession)
+        public SerRomJenKap(string name, string skill, int skillLevel, float penisLenght, string profession)
         {
             Name = name;
             Profession = profession;
+            SkillLevel = skillLevel;
+            PenisLength = penisLenght;
+            Skill = skill;
         }
-
-        public abstract void Meeting();
-
 
     }
 
-    class Roman : SerRomJenKap, IProgrammingLearning
+    class Sergey : SerRomJenKap
     {
-        public bool PossibilityToLearn;
-        public Roman(string name, bool possibilityToLearn) : base (name)
+        bool WorkNow { get; }
+        public Sergey(string name, bool workNow) : base(name, ".NET dev", 100, 20f, "developer/teacher")
         {
-            PossibilityToLearn = possibilityToLearn;
+            WorkNow = workNow;
         }
 
-        public Roman(string name, string profession, bool possibilityToLearn) : base(name, "clown")
-        {
-            PossibilityToLearn = possibilityToLearn;
-        }
+        public bool ICanNow => WorkNow;
 
-        public void Learn()
+        public void Teach(ITeach student)
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Meeting()
-        {
-            throw new NotImplementedException();
+            if (!student.ICanNow)
+            {
+                Console.WriteLine("Now I cant");
+                return;
+            }
         }
 
         public override string ToString()
         {
-            return $"Name {Name} + Profession {Profession}  + Skill {Skill} + SkillLevel {SkillLevel} + PenisLength {PenisLength}";
+            return $"Name {Name}, Work now is {WorkNow}, ICanNow {ICanNow}.";
         }
+
     }
 
-    class Sergey : SerRomJenKap, IProgrammingTeaching
+    class Roman : SerRomJenKap, ITeach
     {
-        public bool PossibilityToTeach;
-        public Sergey(string name, bool possibilityToTeach) : base(name)
+        //public bool PossibilityToLearn;
+        public Roman(string name) : base(name, "crying like little girl", 0, 5f, "student")
         {
-            PossibilityToTeach = possibilityToTeach;
+
         }
 
-        public void Teach()
-        {
-            throw new NotImplementedException();
-        }
+        public bool ICanNow => false;
 
-        public override void Meeting()
+        public override string ToString()
         {
-            throw new NotImplementedException();
+            return $"Name: {Name} + Profession: {Profession}  + Skill: {Skill} + SkillLevel: {SkillLevel} + PenisLength: {PenisLength}";
         }
     }
+
+
 }

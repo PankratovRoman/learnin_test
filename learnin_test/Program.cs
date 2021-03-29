@@ -70,10 +70,12 @@ namespace learnin_test
             //Console.WriteLine(iron);
             //RepairMan.Repair(iron);
 
-            Roman roman = new Roman("Roman", "", true);
+            Roman roman = new Roman("Roman");
             Console.WriteLine(roman);
 
-        
+            Sergey sergey = new Sergey("Sergey", false);
+            Console.WriteLine(sergey);
+            sergey.Teach(roman); 
         }
 
     }
