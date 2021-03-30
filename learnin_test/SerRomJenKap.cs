@@ -40,20 +40,28 @@ namespace learnin_test
             WorkNow = workNow;
         }
 
-        public bool ICanNow => WorkNow;
+       
 
         public void Teach(ITeach student)
         {
-            if (!student.ICanNow)
+            if (!student.ICanNow && !WorkNow)
             {
-                Console.WriteLine("Now I cant");
+                Console.WriteLine("Noone cant");
                 return;
             }
+            if (!student.ICanNow || WorkNow)
+            {
+                Console.WriteLine("Someone cant");
+                return;
+            }
+            
+
+
         }
 
         public override string ToString()
         {
-            return $"Name {Name}, Work now is {WorkNow}, ICanNow {ICanNow}.";
+            return $"Name {Name}, Work now is {WorkNow}.";
         }
 
     }
@@ -66,7 +74,7 @@ namespace learnin_test
 
         }
 
-        public bool ICanNow => false;
+        public bool ICanNow => true;
 
         public override string ToString()
         {
